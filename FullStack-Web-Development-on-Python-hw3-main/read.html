@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saved Messages</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="/logo.png" alt="logo" />
+          </a>
+          <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/message">Send message</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/read">Read messages</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-5">
+      <div class="p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal">Saved Messages</h1>
+        <p class="fs-5 text-muted">Here you can view all messages sent by users.</p>
+      </div>
+
+      <div class="table-responsive shadow-sm rounded">
+        <table class="table table-striped table-hover align-middle bg-white m-0">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col" style="width: 25%">Time</th>
+              <th scope="col" style="width: 25%">User</th>
+              <th scope="col">Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if messages %}
+              {% for time, data in messages.items() %}
+              <tr>
+                <td class="text-muted"><small>{{ time }}</small></td>
+                <td class="fw-bold text-primary">{{ data["ім'я користувача"] }}</td>
+                <td>{{ data["повідомлення"] }}</td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="3" class="text-center text-muted py-4">No messages found.</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+</html>
